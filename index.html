@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZeeusTopUp - Layanan Top Up Game Terpercaya</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body id="top">
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">
+          <div class="logo-icon"><i class="fas fa-bolt-lightning"></i></div>
+          Zeeus<span>TopUp</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="desktop-nav">
+          <a href="#top"><i class="fas fa-home"></i> Beranda</a>
+          <a href="#promo"><i class="fas fa-bullhorn"></i> Promo</a>
+          <a href="#games"><i class="fas fa-gamepad"></i> Game</a>
+          <a href="#events"><i class="fas fa-calendar-alt"></i> Acara</a>
+          <a href="#" onclick="openHistoryModal()"><i class="fas fa-history"></i> Riwayat</a>
+          <a href="#" onclick="openAuthModal()" id="navAkun"><i class="fas fa-user"></i> Akun</a>
+        </div>
+
+
+        <!-- Sidebar Menu -->
+        <div class="nav-links" id="navLinks">
+          <!-- Mobile Search Bar -->
+          <div class="search-bar mobile-search">
+            <button onclick="focusSearch()"><i class="fas fa-search"></i></button>
+            <input type="text" class="gameSearchInput" placeholder="Cari game favoritmu.." />
+          </div>
+
+          <a href="#top" onclick="toggleMenu()"><i class="fas fa-home"></i> Beranda</a>
+          <a href="#promo" onclick="toggleMenu()"><i class="fas fa-bullhorn"></i> Promo</a>
+          <a href="#games" onclick="toggleMenu()"><i class="fas fa-gamepad"></i> Game</a>
+          <a href="#events" onclick="toggleMenu()"><i class="fas fa-calendar-alt"></i> Acara</a>
+          <a href="#" onclick="openHistoryModal(); toggleMenu()"><i class="fas fa-history"></i> Riwayat</a>
+          <a href="#" onclick="openAuthModal(); toggleMenu()" id="mobileNavAkun"><i class="fas fa-user"></i> Akun</a>
+          
+          <!-- Mobile Language & Location Selector -->
+          <div class="lang-region-selector mobile-only">
+             <button class="lang-region-btn" onclick="toggleLangMenu(event)">
+              <i class="fas fa-globe"></i>
+              <span class="current-lang">ID</span>
+            </button>
+            <div class="lang-dropdown">
+              <div class="dropdown-group">
+                <h4>Bahasa</h4>
+                <div class="dropdown-options">
+                  <button class="dropdown-item active" data-type="lang" data-value="ID" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/id.png" alt="ID"> Indonesia
+                  </button>
+                  <button class="dropdown-item" data-type="lang" data-value="EN" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/us.png" alt="EN"> English
+                  </button>
+                </div>
+              </div>
+              <div class="dropdown-separator"></div>
+              <div class="dropdown-group">
+                <h4>Lokasi</h4>
+                <div class="dropdown-options">
+                  <button class="dropdown-item active" data-type="loc" data-value="ID" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/id.png" alt="ID"> Indonesia
+                  </button>
+                  <button class="dropdown-item" data-type="loc" data-value="MY" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/my.png" alt="MY"> Malaysia
+                  </button>
+                  <button class="dropdown-item" data-type="loc" data-value="SG" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/sg.png" alt="SG"> Singapore
+                  </button>
+                  <button class="dropdown-item" data-type="loc" data-value="PH" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/ph.png" alt="PH"> Philippines
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side Elements -->
+        <div class="navbar-right">
+          <!-- Language & Location Selector -->
+          <div class="lang-region-selector desktop-only">
+            <button class="lang-region-btn" onclick="toggleLangMenu(event)">
+              <i class="fas fa-globe"></i>
+              <span class="current-lang">ID</span>
+            </button>
+            
+            <div class="lang-dropdown">
+              <div class="dropdown-group">
+                <h4>Bahasa</h4>
+                <div class="dropdown-options">
+                  <button class="dropdown-item active" data-type="lang" data-value="ID" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/id.png" alt="ID"> Indonesia
+                  </button>
+                  <button class="dropdown-item" data-type="lang" data-value="EN" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/us.png" alt="EN"> English
+                  </button>
+                </div>
+              </div>
+              
+              <div class="dropdown-separator"></div>
+              
+              <div class="dropdown-group">
+                <h4>Lokasi</h4>
+                <div class="dropdown-options">
+                  <button class="dropdown-item active" data-type="loc" data-value="ID" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/id.png" alt="ID"> Indonesia
+                  </button>
+                  <button class="dropdown-item" data-type="loc" data-value="MY" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/my.png" alt="MY"> Malaysia
+                  </button>
+                  <button class="dropdown-item" data-type="loc" data-value="SG" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/sg.png" alt="SG"> Singapore
+                  </button>
+                  <button class="dropdown-item" data-type="loc" data-value="PH" onclick="selectOption(this)">
+                    <img src="https://flagcdn.com/w20/ph.png" alt="PH"> Philippines
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hamburger-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Top Up Game <span>Favoritmu</span> Sekarang!</h1>
+          <p>
+            Proses kilat, aman, dan terpercaya. Tersedia untuk berbagai game
+            populer.
+          </p>
+          <div class="hero-cta">
+            <a href="#games" class="btn btn-primary">Mulai Top Up</a>
+            <a href="#promo" class="btn btn-secondary">Lihat Promo</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="promo-section" id="promo">
+      <div class="container">
+        <h2 class="section-title">Promo Spesial</h2>
+        <div class="promo-grid">
+          <div class="promo-card">
+            <img
+              src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1200"
+              alt="Promo 1"
+            />
+            <div class="promo-content">
+              <h3>Diskon Akhir Tahun</h3>
+              <p>Dapatkan diskon hingga 50% untuk semua game!</p>
+              <a href="#games" class="btn btn-primary">Serbu Sekarang</a>
+            </div>
+          </div>
+          <div class="promo-card">
+            <img
+              src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&q=80&w=1200"
+              alt="Promo 2"
+            />
+            <div class="promo-content">
+              <h3>Bonus Top Up</h3>
+              <p>Extra 20% diamonds untuk pengguna baru.</p>
+              <a href="#games" class="btn btn-primary">Top Up Yuk</a>
+            </div>
+          </div>
+          <div class="promo-card">
+            <img
+              src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=1200"
+              alt="Promo 3"
+            />
+            <div class="promo-content">
+              <h3>Weekend Deal</h3>
+              <p>Cashback spesial setiap hari sabtu & minggu.</p>
+              <a href="#games" class="btn btn-primary">Cek Promo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container" id="games">
+      <section class="game-grid-section">
+        <h2 class="section-title">Game Populer</h2>
+        <div class="game-grid">
+          <!-- Mobile Legends -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="assets/mobile_legends_banner_1766075021916.png"
+                alt="Mobile Legends"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Mobile Legends</h3>
+              <p>Moonton</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- PUBG Mobile -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="assets/pubg_mobile_banner_1766075041620.png"
+                alt="PUBG Mobile"
+              />
+            </div>
+            <div class="game-info">
+              <h3>PUBG Mobile</h3>
+              <p>Tencent Games</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Free Fire -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="assets/free_fire_banner_1766075061859.png"
+                alt="Free Fire"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Free Fire</h3>
+              <p>Garena</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Genshin Impact -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="assets/genshin_impact_banner_1766075083040.png"
+                alt="Genshin Impact"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Genshin Impact</h3>
+              <p>HoYoverse</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Valorant -->
+          <div class="game-card">
+            <div class="game-image">
+              <img src="assets/valorant_banner.png" alt="Valorant" />
+            </div>
+            <div class="game-info">
+              <h3>Valorant</h3>
+              <p>Riot Games</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Roblox -->
+          <div class="game-card">
+            <div class="game-image">
+              <img src="assets/roblox_banner.png" alt="Roblox" />
+            </div>
+            <div class="game-info">
+              <h3>Roblox</h3>
+              <p>Roblox Corporation</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Honkai Star Rail -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://cdn2.steamgriddb.com/logo_thumb/804bfd285116c91c935176b2b199894d.png"
+                alt="Honkai Star Rail"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Honkai: Star Rail</h3>
+              <p>HoYoverse</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Call of Duty Mobile -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=800"
+                alt="Call of Duty Mobile"
+              />
+            </div>
+            <div class="game-info">
+              <h3>COD Mobile</h3>
+              <p>Activision</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Clash of Clans -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://assets.fontsinuse.com/use-media/95499/upto-700xauto/5d76f103/1/jpeg/1*m7eS70d2Nhtk4-3YdHp3mg.jpeg"
+                alt="Clash of Clans"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Clash of Clans</h3>
+              <p>Supercell</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Apex Legends Mobile -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://www.freepnglogos.com/uploads/apex-legends-logo-png/apex-legends-company-logo-on-red-background-5.png"
+                alt="Apex Legends"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Apex Legends</h3>
+              <p>Electronic Arts</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Minecraft -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://www.freepnglogos.com/uploads/minecraft-logo-8.png"
+                alt="Minecraft"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Minecraft</h3>
+              <p>Mojang Studios</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Wild Rift -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&q=80&w=800"
+                alt="Wild Rift"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Wild Rift</h3>
+              <p>Riot Games</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Honor of Kings -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1542382257-80dee2700bd2?auto=format&fit=crop&q=80&w=800"
+                alt="Honor of Kings"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Honor of Kings</h3>
+              <p>Level Infinite</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Stumble Guys -->
+          <div class="game-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800"
+                alt="Stumble Guys"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Stumble Guys</h3>
+              <p>Scopely</p>
+              <button class="btn-card" onclick="openTopUpModal(this)">
+                Top Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Entertainment Section -->
+      <section class="game-grid-section ent-section" id="entertainment">
+        <h2 class="section-title">Layanan Hiburan</h2>
+        <div class="game-grid">
+          <!-- Netflix -->
+          <div class="game-card ent-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&q=80&w=800"
+                alt="Netflix"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Netflix</h3>
+              <p>Premium 4K + HDR</p>
+              <button class="btn-card" onclick="openSubscriptionModal(this)">
+                Langganan
+              </button>
+            </div>
+          </div>
+
+          <!-- Spotify -->
+          <div class="game-card ent-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&q=80&w=800"
+                alt="Spotify"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Spotify</h3>
+              <p>Premium Individual</p>
+              <button class="btn-card" onclick="openSubscriptionModal(this)">
+                Langganan
+              </button>
+            </div>
+          </div>
+
+          <!-- YouTube -->
+          <div class="game-card ent-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800"
+                alt="YouTube"
+              />
+            </div>
+            <div class="game-info">
+              <h3>YouTube</h3>
+              <p>Premium No Ads</p>
+              <button class="btn-card" onclick="openSubscriptionModal(this)">
+                Langganan
+              </button>
+            </div>
+          </div>
+
+          <!-- Disney+ -->
+          <div class="game-card ent-card">
+            <div class="game-image">
+              <img
+                src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800"
+                alt="Disney+"
+              />
+            </div>
+            <div class="game-info">
+              <h3>Disney+ Hotstar</h3>
+              <p>Streaming Movies</p>
+              <button class="btn-card" onclick="openSubscriptionModal(this)">
+                Langganan
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="voucher-section" id="vouchers">
+        <h2 class="section-title">Voucher Promo</h2>
+        <div class="voucher-grid">
+          <!-- Voucher 1 -->
+          <div class="voucher-card">
+            <div class="voucher-badge">NEW USER</div>
+            <div class="voucher-content">
+              <div class="voucher-info">
+                <h3>Diskon 50%</h3>
+                <p>Khusus transaksi pertama pengguna baru.</p>
+              </div>
+              <div class="voucher-action">
+                <span class="voucher-code">TOPUPHEBAt</span>
+                <button class="btn-copy" onclick="copyVoucher('TOPUPHEBAt')">
+                  Salin
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Voucher 2 -->
+          <div class="voucher-card">
+            <div class="voucher-badge">LIMITED</div>
+            <div class="voucher-content">
+              <div class="voucher-info">
+                <h3>Cashback 20rb</h3>
+                <p>Minimal transaksi 100rb, semua game.</p>
+              </div>
+              <div class="voucher-action">
+                <span class="voucher-code">GAMERSETIA</span>
+                <button class="btn-copy" onclick="copyVoucher('GAMERSETIA')">
+                  Salin
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Voucher 3 -->
+          <div class="voucher-card">
+            <div class="voucher-badge">PROMO AKHIR TAHUN</div>
+            <div class="voucher-content">
+              <div class="voucher-info">
+                <h3>Potongan 10k</h3>
+                <p>Tanpa minimal transaksi, khusus hari ini.</p>
+              </div>
+              <div class="voucher-action">
+                <span class="voucher-code">BYE2025</span>
+                <button class="btn-copy" onclick="copyVoucher('BYE2025')">
+                  Salin
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rewards-section" id="rewards">
+        <h2 class="section-title">Loyalty Rewards</h2>
+        <div class="rewards-container">
+          <!-- User Status Card -->
+          <div class="rewards-card user-status">
+            <div class="status-header">
+              <div class="user-info" onclick="openAuthModal()" style="cursor: pointer;">
+                <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                <div>
+                  <h4 id="rewardsUserName">Gamer Pro</h4>
+                  <p id="rewardsUserTier"><span class="tier-badge silver">Silver Tier</span></p>
+                </div>
+              </div>
+              <div class="points-display">
+                <span class="point-value">2,450</span>
+                <span class="point-label">Points</span>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-info">
+                <span>Progress ke Gold</span>
+                <span>75%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Daily Check-in -->
+          <div class="rewards-card daily-checkin">
+            <h3>Daily Check-in</h3>
+            <div class="checkin-grid">
+              <div class="day-box checked">
+                <span class="day-num">H1</span><i class="fas fa-check"></i>
+              </div>
+              <div class="day-box checked">
+                <span class="day-num">H2</span><i class="fas fa-check"></i>
+              </div>
+              <div class="day-box checked">
+                <span class="day-num">H3</span><i class="fas fa-check"></i>
+              </div>
+              <div class="day-box current">
+                <span class="day-num">H4</span><i class="fas fa-coins"></i>
+              </div>
+              <div class="day-box">
+                <span class="day-num">H5</span><i class="fas fa-gem"></i>
+              </div>
+              <div class="day-box">
+                <span class="day-num">H6</span><i class="fas fa-gift"></i>
+              </div>
+              <div class="day-box special">
+                <span class="day-num">H7</span><i class="fas fa-crown"></i>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-full" onclick="claimDaily()">
+              Klaim Hadiah Hari Ini
+            </button>
+          </div>
+
+          <!-- Missions List -->
+          <div class="rewards-card missions">
+            <h3>Misi Spesial</h3>
+            <div class="mission-list">
+              <div class="mission-item">
+                <div class="mission-desc">
+                  <i class="fas fa-shopping-cart"></i>
+                  <div>
+                    <p class="mission-title">Top Up Pertama Hari Ini</p>
+                    <p class="mission-reward">+100 Points</p>
+                  </div>
+                </div>
+                <button class="btn-mission done">
+                  <i class="fas fa-check"></i>
+                </button>
+              </div>
+              <div class="mission-item">
+                <div class="mission-desc">
+                  <i class="fas fa-share-nodes"></i>
+                  <div>
+                    <p class="mission-title">Bagikan ke Teman</p>
+                    <p class="mission-reward">+50 Points</p>
+                  </div>
+                </div>
+                <button class="btn-mission">Ambil</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <section class="events-section" id="events">
+        <div class="container">
+          <h2 class="section-title">Acara & Turnamen</h2>
+          <div class="events-grid">
+            <!-- Event 1 -->
+            <div class="event-card">
+              <div class="event-image">
+                <img
+                  src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=600"
+                  alt="Tournament MLBB"
+                />
+                <div class="event-date">
+                  <span class="date">25</span>
+                  <span class="month">DES</span>
+                </div>
+              </div>
+              <div class="event-details">
+                <span class="event-tag">Turnamen</span>
+                <h3>MLBB Winter Championship</h3>
+                <p><i class="fas fa-clock"></i> 19:00 WIB</p>
+                <p><i class="fas fa-trophy"></i> Total Hadiah 10 Juta</p>
+                <button
+                  class="btn btn-secondary btn-full btn-event"
+                  onclick="registerEvent('MLBB Winter Championship')"
+                >
+                  Daftar Sekarang
+                </button>
+              </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="event-card">
+              <div class="event-image">
+                <img
+                  src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&q=80&w=600"
+                  alt="Webinar Game"
+                />
+                <div class="event-date">
+                  <span class="date">28</span>
+                  <span class="month">DES</span>
+                </div>
+              </div>
+              <div class="event-details">
+                <span class="event-tag">Webinar</span>
+                <h3>Menjadi Pro Player</h3>
+                <p><i class="fas fa-clock"></i> 14:00 WIB</p>
+                <p><i class="fas fa-video"></i> Via Zoom</p>
+                <button
+                  class="btn btn-secondary btn-full btn-event"
+                  onclick="registerEvent('Webinar Menjadi Pro Player')"
+                >
+                  Ikuti Event
+                </button>
+              </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="event-card">
+              <div class="event-image">
+                <img
+                  src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=600"
+                  alt="Mabar Online"
+                />
+                <div class="event-date">
+                  <span class="date">01</span>
+                  <span class="month">JAN</span>
+                </div>
+              </div>
+              <div class="event-details">
+                <span class="event-tag">Komunitas</span>
+                <h3>Mabar Tahun Baru</h3>
+                <p><i class="fas fa-clock"></i> 20:00 WIB</p>
+                <p><i class="fas fa-users"></i> Discord Community</p>
+                <button
+                  class="btn btn-secondary btn-full btn-event"
+                  onclick="registerEvent('Mabar Tahun Baru')"
+                >
+                  Join Discord
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="container">
+        <h2 class="section-title">Apa Kata Gamers?</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150"
+                  alt="User 1"
+                />
+              </div>
+              <div class="testi-info">
+                <h4>Budi Santoso</h4>
+                <p>Top Global Lesley</p>
+              </div>
+            </div>
+            <p class="testi-text">
+              "Gila sih, top up di sini cepet banget! Baru bayar, diamond
+              langsung masuk. Harganya juga miring abis dibanding tempat lain."
+            </p>
+            <div class="testi-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
+                  alt="User 2"
+                />
+              </div>
+              <div class="testi-info">
+                <h4>Siti Aminah</h4>
+                <p>Sultan FF</p>
+              </div>
+            </div>
+            <p class="testi-text">
+              "Udah langganan lama di GameTopUp. Customer servicenya ramah,
+              kalau ada kendala langsung dibantu sampai beres. Best lah
+              pokoknya!"
+            </p>
+            <div class="testi-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testi-header">
+              <div class="testi-avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150"
+                  alt="User 3"
+                />
+              </div>
+              <div class="testi-info">
+                <h4>Kevin Wijaya</h4>
+                <p>Valorant Radiant</p>
+              </div>
+            </div>
+            <p class="testi-text">
+              "Sering banget dapet promo di sini. Lumayan banget buat
+              nambah-nambah skin. Recommended banget buat yang mau top up aman
+              dan murah."
+            </p>
+            <div class="testi-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <h2 class="section-title">Pertanyaan Umum (FAQ)</h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Berapa lama proses top up?</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Proses top up di GameTopUp sangat cepat, biasanya hanya memakan
+                waktu 1-5 menit setelah pembayaran dikonfirmasi. Jika terjadi
+                gangguan, maksimal proses adalah 1x24 jam.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Metode pembayaran apa saja yang tersedia?</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Kami menyediakan berbagai metode pembayaran, mulai dari E-Wallet
+                (Dana, OVO, GoPay, ShopeePay), QRIS, Transfer Bank (BCA,
+                Mandiri, BRI, BNI), hingga pembayaran via Minimarket (Indomaret,
+                Alfamart).
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Apakah top up di sini aman?</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Sangat aman! Kami menggunakan sistem enkripsi data terbaru dan
+                bekerja sama dengan gateway pembayaran resmi. Selain itu, kami
+                juga bergaransi uang kembali jika top up gagal.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Bagaimana jika saya salah memasukkan ID?</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Mohon maaf, kesalahan memasukkan User ID sepenuhnya menjadi
+                tanggung jawab pengguna. Pastikan Anda memeriksa kembali User ID
+                sebelum melakukan pembayaran.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Support Section -->
+    <section class="support-section" id="support">
+      <div class="container">
+        <h2 class="section-title">Bantuan & Dukungan</h2>
+        <div class="support-grid">
+          <!-- WhatsApp Support -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <h3>WhatsApp</h3>
+            <p>Chat langsung dengan CS kami.<br />Respon cepat 24 jam.</p>
+            <a
+              href="https://wa.me/6281234567890"
+              target="_blank"
+              class="btn btn-primary btn-sm"
+              >Chat Sekarang</a
+            >
+          </div>
+
+          <!-- Email Support -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email Support</h3>
+            <p>Kirim keluhan atau saran.<br />Balasan maks 1x24 jam.</p>
+            <a
+              href="mailto:support@gametopup.com"
+              class="btn btn-secondary btn-sm"
+              >Kirim Email</a
+            >
+          </div>
+
+          <!-- Live Chat -->
+          <div class="support-card">
+            <div class="support-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Live Chat</h3>
+            <p>Bantuan instan via website.<br />Online 08:00 - 22:00.</p>
+            <button class="btn btn-secondary btn-sm" onclick="toggleChatInfo()">
+              Mulai Chat
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-info">
+            <a href="#" class="logo footer-logo">
+              <div class="logo-icon"><i class="fas fa-bolt-lightning"></i></div>
+              Zeeus<span>TopUp</span>
+            </a>
+            <p>
+              Tempat top up game tercepat dan termurah di Indonesia. Melayani
+              24/7 dengan berbagai metode pembayaran.
+            </p>
+          </div>
+          <div class="footer-links">
+            <h4>Menu Cepat</h4>
+            <ul>
+              <li><a href="#">Beranda</a></li>
+              <li><a href="#">Game</a></li>
+               <li><a href="#">Syarat & Ketentuan</a></li>
+              <li><a href="#">Kebijakan Privasi</a></li>
+              <li><a href="#" onclick="openAuthModal()">Akun</a></li>
+            </ul>
+          </div>
+          <div class="footer-social">
+            <h4>Ikuti Kami</h4>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 ZeeusTopUp. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Top Up Modal -->
+    <div id="topupModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalGameTitle">Top Up Game</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="topupForm">
+            <!-- Step 1: User ID -->
+            <div class="form-step">
+              <label><i class="fas fa-id-card"></i> Masukkan User ID</label>
+              <input
+                type="text"
+                id="userId"
+                placeholder="Contoh: 12345678 (1234)"
+                required
+              />
+              <p class="input-hint">Kombinasi ID dan Zone ID (jika ada).</p>
+            </div>
+
+            <!-- Step 2: Contact Info -->
+            <div class="form-step">
+              <label
+                ><i class="fas fa-envelope"></i> Email / No. WhatsApp</label
+              >
+              <input
+                type="text"
+                id="contactInfo"
+                placeholder="email@example.com / 0812..."
+                required
+              />
+              <p class="input-hint">Bukti pembayaran akan dikirim ke sini.</p>
+            </div>
+
+            <!-- Step 3: Nominal -->
+            <div class="form-step">
+              <label><i class="fas fa-gem"></i> Pilih Nominal Top Up</label>
+              <div class="nominal-grid">
+                <div
+                  class="nominal-item"
+                  onclick="selectNominal(this, '50 Diamonds')"
+                >
+                  <span class="nominal-val">50 Diamonds</span>
+                  <span class="nominal-price">Rp 15,000</span>
+                </div>
+                <div
+                  class="nominal-item"
+                  onclick="selectNominal(this, '100 Diamonds')"
+                >
+                  <span class="nominal-val">100 Diamonds</span>
+                  <span class="nominal-price">Rp 30,000</span>
+                </div>
+                <div
+                  class="nominal-item"
+                  onclick="selectNominal(this, '250 Diamonds')"
+                >
+                  <span class="nominal-val">250 Diamonds</span>
+                  <span class="nominal-price">Rp 75,000</span>
+                </div>
+                <div
+                  class="nominal-item"
+                  onclick="selectNominal(this, '500 Diamonds')"
+                >
+                  <span class="nominal-val">500 Diamonds</span>
+                  <span class="nominal-price">Rp 145,000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Payment Method -->
+            <div class="form-step">
+              <label
+                ><i class="fas fa-wallet"></i> Pilih Metode Pembayaran</label
+              >
+              <div class="payment-grid">
+                <div class="payment-item" onclick="selectPayment(this, 'Dana')">
+                  <i class="fas fa-wallet"></i> Dana
+                </div>
+                <div class="payment-item" onclick="selectPayment(this, 'OVO')">
+                  <i class="fas fa-mobile-screen"></i> OVO
+                </div>
+                <div class="payment-item" onclick="selectPayment(this, 'QRIS')">
+                  <i class="fas fa-qrcode"></i> QRIS
+                </div>
+                <div
+                  class="payment-item"
+                  onclick="selectPayment(this, 'Bank Transfer')"
+                >
+                  <i class="fas fa-building-columns"></i> Bank
+                </div>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn btn-primary btn-full">
+                Konfirmasi Pembayaran
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subscription Modal -->
+    <div id="subModal" class="modal">
+      <div class="modal-content sub-modal-content">
+        <div class="modal-header sub-header">
+          <h2 id="subTitle">Langganan Hiburan</h2>
+          <span class="close-sub-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="subForm">
+            <!-- Step 1: Account Info -->
+            <div class="form-step">
+              <label
+                ><i class="fas fa-user-tag"></i> Akun / Email Layanan</label
+              >
+              <input
+                type="text"
+                id="subAccount"
+                placeholder="email@akun.com"
+                required
+              />
+              <p class="input-hint">
+                Email yang akan didaftarkan untuk langganan.
+              </p>
+            </div>
+
+            <!-- Step 2: Plan Selection -->
+            <div class="form-step">
+              <label
+                ><i class="fas fa-layer-group"></i> Pilih Paket Langganan</label
+              >
+              <div class="plan-grid">
+                <div class="plan-item" onclick="selectPlan(this, '1 Bulan')">
+                  <div class="plan-header">
+                    <span class="plan-name">1 Bulan</span>
+                    <span class="plan-price">Rp 45,000</span>
+                  </div>
+                  <p class="plan-desc">Akses penuh selama 30 hari.</p>
+                </div>
+                <div class="plan-item" onclick="selectPlan(this, '3 Bulan')">
+                  <div class="plan-header">
+                    <span class="plan-name">3 Bulan</span>
+                    <span class="plan-price">Rp 120,000</span>
+                  </div>
+                  <p class="plan-desc">Hemat 15% - Akses 90 hari.</p>
+                  <div class="plan-badge">BEST VALUE</div>
+                </div>
+                <div class="plan-item" onclick="selectPlan(this, '12 Bulan')">
+                  <div class="plan-header">
+                    <span class="plan-name">1 Tahun</span>
+                    <span class="plan-price">Rp 420,000</span>
+                  </div>
+                  <p class="plan-desc">Hemat 25% - Akses 365 hari.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div class="form-step">
+              <label
+                ><i class="fas fa-credit-card"></i> Metode Pembayaran</label
+              >
+              <div class="payment-grid">
+                <div
+                  class="payment-item"
+                  onclick="selectSubPayment(this, 'Dana')"
+                >
+                  <i class="fas fa-wallet"></i> Dana
+                </div>
+                <div
+                  class="payment-item"
+                  onclick="selectSubPayment(this, 'QRIS')"
+                >
+                  <i class="fas fa-qrcode"></i> QRIS
+                </div>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn btn-sub btn-full">
+                Aktifkan Langganan Sekarang
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Chat Widget -->
+    <div class="chat-widget">
+      <button class="chat-toggle" onclick="toggleChat()">
+        <i class="fas fa-comment-dots"></i>
+      </button>
+
+      <div class="chat-window">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <i class="fas fa-headset"></i>
+            <div>
+              <h4>CS ZeeusTopUp</h4>
+              <span class="status-dot"></span> Online
+            </div>
+          </div>
+          <button class="close-chat" onclick="toggleChat()">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+          <div class="chat-message bot">
+            <p>Halo! Ada yang bisa kami bantu seputar top up game?</p>
+            <span class="chat-time">Just now</span>
+          </div>
+        </div>
+        <div class="chat-footer">
+          <input
+            type="text"
+            id="chatInput"
+            placeholder="Ketik pesan..."
+            onkeypress="handleChatInput(event)"
+          />
+          <button onclick="sendChatMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- History Modal -->
+    <div id="historyModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal close-history">&times;</span>
+        <h2 id="historyTitle">Riwayat Transaksi</h2>
+        <div id="historyList" class="history-list">
+          <!-- History items will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal auth-modal">
+      <div class="modal-content auth-content">
+        <span class="close-modal close-auth" onclick="closeAuthModal()">&times;</span>
+        
+        <div class="auth-box">
+          <div class="auth-header">
+            <h2 id="authTitle">Selamat Datang Kembali</h2>
+            <p id="authSubtitle">Silahkan masuk ke akun Anda</p>
+          </div>
+
+          <form id="signInForm" class="auth-form">
+            <div class="form-group">
+              <label for="signInEmail">Email</label>
+              <div class="input-with-icon">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="signInEmail" placeholder="nama@email.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signInPassword">Kata Sandi</label>
+              <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="signInPassword" placeholder="••••••••" required>
+              </div>
+            </div>
+            <div class="auth-actions">
+              <a href="#" class="forgot-password">Lupa Kata Sandi?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Masuk</button>
+          </form>
+
+          <form id="signUpForm" class="auth-form" style="display: none;">
+            <div class="form-group">
+              <label for="signUpName">Nama Lengkap</label>
+              <div class="input-with-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" id="signUpName" placeholder="Masukkan nama Anda" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signUpEmail">Email</label>
+              <div class="input-with-icon">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="signUpEmail" placeholder="nama@email.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signUpPassword">Kata Sandi</label>
+              <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="signUpPassword" placeholder="Buat kata sandi" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Daftar Sekarang</button>
+          </form>
+
+          <div class="auth-separator">
+            <span>Atau masuk dengan</span>
+          </div>
+
+          <!-- Google Sign-In Button -->
+          <!-- SETUP: Ganti YOUR_GOOGLE_CLIENT_ID dengan Client ID dari Google Cloud Console -->
+          <!-- Panduan lengkap ada di file GOOGLE_LOGIN_SETUP.md -->
+          <div class="google-btn-container">
+            <!-- Google One Tap Configuration -->
+            <div id="g_id_onload"
+                 data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                 data-context="signin"
+                 data-ux_mode="popup"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false"
+                 data-itp_support="true">
+            </div>
+            
+            <!-- Google Sign-In Button -->
+            <div class="g_id_signin"
+                 data-type="standard"
+                 data-shape="rectangular"
+                 data-theme="filled_blue"
+                 data-text="signin_with"
+                 data-size="large"
+                 data-logo_alignment="left"
+                 data-width="100%">
+            </div>
+          </div>
+
+          <div class="auth-footer">
+            <p id="authSwitchText">Belum punya akun? <a href="#" onclick="toggleAuthMode(event)">Daftar Gratis</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal profile-modal">
+      <div class="modal-content profile-content">
+        <span class="close-modal" onclick="closeProfileModal()">&times;</span>
+        
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar"><i class="fas fa-user-circle"></i></div>
+            <h2 id="profileName">Username</h2>
+            <p id="profileTier"><span class="tier-badge gold">Gold Tier</span></p>
+          </div>
+          
+          <div class="profile-info-grid">
+            <div class="profile-info-item">
+              <span class="info-label">Email</span>
+              <span class="info-value" id="profileEmail">user@email.com</span>
+            </div>
+            <div class="profile-info-item">
+              <span class="info-label">Member Sejak</span>
+              <span class="info-value">18 Des 2025</span>
+            </div>
+            <div class="profile-info-item">
+              <span class="info-label">Poin Loyalty</span>
+              <span class="info-value">2,450 pts</span>
+            </div>
+            <div class="profile-info-item">
+              <span class="info-label">Level</span>
+              <span class="info-value">Lv. 12</span>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button class="btn btn-secondary btn-full" onclick="openHistoryModal(); closeProfileModal()"><i class="fas fa-history"></i> Riwayat Transaksi</button>
+            <button class="btn btn-primary btn-full logout-btn" onclick="logout(); closeProfileModal()"><i class="fas fa-sign-out-alt"></i> Keluar dari Akun</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
